@@ -54,6 +54,12 @@ app.get('/home', (req, res)=> {
     })
 })
 
+app.get('/testing', (req, res)=> {
+    res.json({
+        message: "test of autosclaing successful"
+    })
+})
+
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 })
