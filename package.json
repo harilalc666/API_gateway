@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon npx gatewayServer.js"
+    "start": "nodemon npx index.js"
   },
   "author": "",
   "license": "ISC",
