@@ -48,6 +48,12 @@ app.use('/bookingservice', async (req, res, next) => {
 
 app.use('/bookingservice', createProxyMiddleware({ target: 'http://localhost:3002', changeOrigin: true }));
 
+app.get('/home', (req, res)=> {
+    res.json({
+        message: "ok"
+    })
+})
+
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 })
