@@ -4,14 +4,13 @@ const rateLimit = require('express-rate-limit')
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const axios = require('axios');
 const app = express();
-const PORT = 3005;
-
+require('dotenv').config();
 
 app.use(morgan('combined'));
 
 const limiter = rateLimit({
 	windowMs: 02 * 60 * 1000, // 02 minutes
-	max: 5, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+	max: 5, // Limit each IP to 5 requests per `window` (here, per 2 minutes)
 })
 
 app.use(limiter);
@@ -48,18 +47,7 @@ app.use('/bookingservice', async (req, res, next) => {
 
 app.use('/bookingservice', createProxyMiddleware({ target: 'http://localhost:3002', changeOrigin: true }));
 
-app.get('/home', (req, res)=> {
-    res.json({
-        message: "ok"
-    })
-})
 
-app.get('/testing', (req, res)=> {
-    res.json({
-        message: "test of autosclaing successful"
-    })
-})
-
-app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
+app.listen(process.env.Port, () => {
+    console.log(`Server started on port ${process.env.Port}`);
 })
